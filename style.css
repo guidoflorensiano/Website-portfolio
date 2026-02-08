@@ -286,6 +286,19 @@ nav {
   padding: 0.5rem 0;
   position: relative;
   transition: color var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .nav-link {
+    position: relative;
+    z-index: 10;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
 }
 
 .nav-number {
@@ -1756,7 +1769,7 @@ nav {
     flex-direction: column;
     padding: 2rem;
     gap: 1.5rem;
-    z-index: 999;
+    z-index: 9999;
     transform: translateY(-100%);
     transition: transform 0.3s ease;
   }
@@ -1772,6 +1785,12 @@ nav {
     padding: 1rem;
     border-radius: var(--radius-md);
     transition: background-color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .nav-link:hover {
