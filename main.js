@@ -133,6 +133,7 @@ if (contactForm) {
     const formData = new FormData(contactForm);
     const name = formData.get('name');
     const email = formData.get('email');
+    const subject = formData.get('subject') || 'Portfolio Contact';
     const message = formData.get('message');
     
     // Show loading state
@@ -140,9 +141,9 @@ if (contactForm) {
     submitBtn.disabled = true;
     
     // Create mailto link
-    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-    const mailtoLink = `mailto:erasmus035@gmail.com?subject=${subject}&body=${body}`;
+    const encodedSubject = encodeURIComponent(`${subject} from ${name}`);
+    const encodedBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+    const mailtoLink = `mailto:erasmus035@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
     
     // Open email client
     window.location.href = mailtoLink;
