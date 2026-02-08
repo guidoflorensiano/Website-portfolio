@@ -426,6 +426,13 @@ nav {
   border: none;
   cursor: pointer;
   padding: 0.5rem;
+  z-index: 10000;
+  position: relative;
+}
+
+.menu-toggle:hover {
+  background: var(--glass-bg);
+  border-radius: var(--radius-sm);
 }
 
 .menu-line {
