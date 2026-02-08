@@ -1587,11 +1587,24 @@ nav {
   color: var(--text-muted);
   text-decoration: none;
   margin-bottom: 0.5rem;
+  padding: 0.5rem;
   transition: color var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
 }
 
 .link-group a:hover {
   color: var(--primary);
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .link-group a {
+    position: relative;
+    z-index: 1;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
 }
 
 .footer-bottom {
