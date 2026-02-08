@@ -129,17 +129,31 @@ if (contactForm) {
     const submitBtn = contactForm.querySelector('.btn-submit');
     const originalText = submitBtn.innerHTML;
     
+    // Get form data
+    const formData = new FormData(contactForm);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+    
     // Show loading state
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     submitBtn.disabled = true;
     
-    // Simulate API call
+    // Create mailto link
+    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+    const mailtoLink = `mailto:erasmus035@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Show success message
     setTimeout(() => {
-      alert('Message sent successfully! I\'ll get back to you soon.');
+      alert('Opening your email client... Please send the message to complete.');
       contactForm.reset();
       submitBtn.innerHTML = originalText;
       submitBtn.disabled = false;
-    }, 1500);
+    }, 1000);
   });
 }
 
