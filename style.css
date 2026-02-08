@@ -1733,10 +1733,52 @@ nav {
   
   .nav-links {
     display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    z-index: 999;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-links.active {
+    display: flex;
+    transform: translateY(0);
+  }
+  
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    background-color: var(--bg-tertiary);
   }
   
   .menu-toggle {
     display: flex;
+  }
+  
+  .menu-toggle.active .menu-line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  
+  .menu-toggle.active .menu-line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.active .menu-line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
   }
   
   .header-actions {
