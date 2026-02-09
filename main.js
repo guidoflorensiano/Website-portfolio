@@ -503,7 +503,78 @@ document.addEventListener('click', (e) => {
     audio.play().catch(() => {});
   }
 
-  // Premium Effects JavaScript
+  // Footer Stats Animation
+const footerStats = document.querySelectorAll('.stat-number');
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const stat = entry.target;
+      const target = parseInt(stat.getAttribute('data-count'));
+      let current = 0;
+      const increment = target / 50;
+      
+      const updateStat = () => {
+        if (current < target) {
+          current += increment;
+          stat.textContent = Math.floor(current);
+          setTimeout(updateStat, 30);
+        } else {
+          stat.textContent = target;
+        }
+      };
+      
+      updateStat();
+      statsObserver.unobserve(stat);
+    }
+  });
+}, { threshold: 0.5 });
+
+footerStats.forEach(stat => {
+  statsObserver.observe(stat);
+});
+
+// Theme Toggle Function
+function toggleTheme() {
+  const body = document.body;
+  const themeBtn = document.querySelector('.btn-theme-toggle i');
+  
+  if (body.classList.contains('dark-theme')) {
+    body.classList.remove('dark-theme');
+    body.classList.add('light-theme');
+    themeBtn.classList.remove('fa-moon');
+    themeBtn.classList.add('fa-sun');
+    localStorage.setItem('theme', 'light');
+  } else {
+    body.classList.remove('light-theme');
+    body.classList.add('dark-theme');
+    themeBtn.classList.remove('fa-sun');
+    themeBtn.classList.add('fa-moon');
+    localStorage.setItem('theme', 'dark');
+  }
+}
+
+// Scroll to Top Function
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+// Initialize theme on load
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  const themeBtn = document.querySelector('.btn-theme-toggle i');
+  
+  if (savedTheme === 'light') {
+    document.body.classList.remove('dark-theme');
+    document.body.classList.add('light-theme');
+    if (themeBtn) {
+      themeBtn.classList.remove('fa-moon');
+      themeBtn.classList.add('fa-sun');
+    }
+  }
+});
 document.addEventListener('DOMContentLoaded', function() {
   
   // Section entry animations
